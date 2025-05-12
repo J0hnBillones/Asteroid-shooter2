@@ -4,7 +4,7 @@ from random import randint, uniform
 class Ship(pygame.sprite.Sprite):
 	def __init__(self, groups):
 		super().__init__(groups)
-		self.image = pygame.image.load("../graphics/ship.png").convert_alpha()
+		self.image = pygame.image.load("../Asteroid-shooter2/graphics/ship.png").convert_alpha()
 		self.rect = self.image.get_rect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
 		self.mask = pygame.mask.from_surface(self.image)
 
@@ -13,7 +13,7 @@ class Ship(pygame.sprite.Sprite):
 		self.shoot_time = None
 
 		# sound
-		self.laser_sound = pygame.mixer.Sound("../sounds/laser.ogg")
+		self.laser_sound = pygame.mixer.Sound("../Asteroid-shooter2/sounds/laser.ogg")
 
 
 	def laser_cooldown(self):
@@ -47,7 +47,7 @@ class Ship(pygame.sprite.Sprite):
 class Laser(pygame.sprite.Sprite):
 	def __init__(self, pos, groups):
 		super().__init__(groups)
-		self.image = pygame.image.load("../graphics/laser.png").convert_alpha()
+		self.image = pygame.image.load("../Asteroid-shooter2/graphics/laser.png").convert_alpha()
 		self.rect = self.image.get_rect(midbottom = pos)
 		self.mask = pygame.mask.from_surface(self.image)
 
@@ -57,7 +57,7 @@ class Laser(pygame.sprite.Sprite):
 		self.speed = 600
 
 		# sound
-		self.explosion_sound = pygame.mixer.Sound("../sounds/explosion.wav")
+		self.explosion_sound = pygame.mixer.Sound("../Asteroid-shooter2/sounds/explosion.wav")
 
 	def meteor_collisions(self):
 		if pygame.sprite.spritecollide(self, meteor_group, True, pygame.sprite.collide_mask):
@@ -75,7 +75,7 @@ class Laser(pygame.sprite.Sprite):
 class Meteor(pygame.sprite.Sprite):
 	def __init__(self, pos, groups):
 		super().__init__(groups)
-		meteor_surf = pygame.image.load("../graphics/meteor.png").convert_alpha()
+		meteor_surf = pygame.image.load("../Asteroid-shooter2/graphics/meteor.png").convert_alpha()
 		meteor_size = pygame.math.Vector2(meteor_surf.get_size()) * uniform(0.5, 1.5)
 		self.scaled_surf = pygame.transform.scale(meteor_surf,meteor_size)
 		self.image = self.scaled_surf
@@ -107,7 +107,7 @@ class Meteor(pygame.sprite.Sprite):
 
 class Score:
 	def __init__(self):
-		self.font = pygame.font.Font("../graphics/subatomic.ttf",50)
+		self.font = pygame.font.Font("../Asteroid-shooter2/graphics/subatomic.ttf",50)
 
 	def display(self):
 		score_text = f'score: {pygame.time.get_ticks() // 1000}'
@@ -125,7 +125,7 @@ pygame.display.set_caption('space shooter 2')
 clock = pygame.time.Clock()
 
 # background
-bg_surf = pygame.image.load("../graphics/background.png").convert()
+bg_surf = pygame.image.load("../Asteroid-shooter2/graphics/background.png").convert()
 
 # sprite groups
 spaceship_group = pygame.sprite.GroupSingle()
@@ -143,7 +143,7 @@ pygame.time.set_timer(meteor_timer, 500)
 score = Score()
 
 # background musics
-bg_music = pygame.mixer.Sound("../sounds/music.wav")
+bg_music = pygame.mixer.Sound("../Asteroid-shooter2/sounds/music.wav")
 bg_music.play(loops = -1)
 
 # game loop
